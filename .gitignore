@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.leaflink/
+output/
+dist/
+build/
+*.egg-info/
+.venv/
+.env
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz

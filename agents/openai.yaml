@@ -1,0 +1,4 @@
+interface:
+  display_name: "Overleaf LeafLink Sync"
+  short_description: "Sync LaTeX projects to Overleaf via LeafLink"
+  default_prompt: "Use $overleaf-leaflink-sync to sync this LaTeX project to Overleaf safely."

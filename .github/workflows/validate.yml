@@ -1,0 +1,22 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Syntax check
+        run: python -m py_compile scripts/leaflink_overleaf_sync.py
+      - name: Check required files
+        run: |
+          test -f SKILL.md
+          test -f agents/openai.yaml
+          test -f assets/logo.png
+          test -f assets/logo.svg
