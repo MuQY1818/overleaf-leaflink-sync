@@ -26,9 +26,7 @@ This project is a Codex skill and workflow wrapper. You still need LeafLink inst
 Step 1: install the Codex skill.
 
 ```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-git clone https://github.com/muqy1818/overleaf-leaflink-sync.git \
-  "${CODEX_HOME:-$HOME/.codex}/skills/overleaf-leaflink-sync"
+npx skills add MuQY1818/overleaf-leaflink-sync -g -y
 ```
 
 Step 2: install the runtime dependencies in a dedicated environment.
@@ -70,6 +68,7 @@ If the dry run is correct, remove `--dry-run`.
 ```text
 .
 ├── SKILL.md
+├── skills.sh.json
 ├── agents/openai.yaml
 ├── assets/
 │   ├── logo.png
@@ -80,18 +79,24 @@ If the dry run is correct, remove `--dry-run`.
 
 ## Install as a Codex Skill
 
-Clone this repository into your Codex skills directory:
+Install it with the Skills CLI:
 
 ```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-git clone https://github.com/muqy1818/overleaf-leaflink-sync.git \
-  "${CODEX_HOME:-$HOME/.codex}/skills/overleaf-leaflink-sync"
+npx skills add MuQY1818/overleaf-leaflink-sync -g -y
 ```
 
 Then start a new Codex session and ask:
 
 ```text
 Use $overleaf-leaflink-sync to sync this LaTeX project to Overleaf.
+```
+
+Manual clone also works if you do not use the Skills CLI:
+
+```bash
+mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+git clone https://github.com/muqy1818/overleaf-leaflink-sync.git \
+  "${CODEX_HOME:-$HOME/.codex}/skills/overleaf-leaflink-sync"
 ```
 
 ## Environment Setup
