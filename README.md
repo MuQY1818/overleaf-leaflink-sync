@@ -19,6 +19,52 @@ Overleaf LeafLink Sync wraps a practical Overleaf workflow for people who do not
 - Runs `leaflink status` and `leaflink push --dry-run` before real pushes.
 - Preserves `PLAYWRIGHT_BROWSERS_PATH` for systems where Playwright installs browsers outside the default home cache.
 
+## Quick Start
+
+This project is a Codex skill and workflow wrapper. You still need LeafLink installed locally because LeafLink performs the actual Overleaf communication.
+
+Step 1: install the Codex skill.
+
+```bash
+mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+git clone https://github.com/muqy1818/overleaf-leaflink-sync.git \
+  "${CODEX_HOME:-$HOME/.codex}/skills/overleaf-leaflink-sync"
+```
+
+Step 2: install the runtime dependencies in a dedicated environment.
+
+```bash
+conda create -n leaflink-sync python=3.11
+conda activate leaflink-sync
+pip install "leaflink[browser,watch]"
+playwright install chromium
+```
+
+Step 3: login to Overleaf.
+
+```bash
+leaflink login --base-url https://www.overleaf.com
+```
+
+Then open Codex in your LaTeX project and ask:
+
+```text
+Use $overleaf-leaflink-sync to sync this LaTeX project to Overleaf.
+```
+
+For a manual first run, clone the Overleaf project once and dry-run before pushing:
+
+```bash
+leaflink clone https://www.overleaf.com/project/<project-id> output/overleaf_leaflink
+
+python "${CODEX_HOME:-$HOME/.codex}/skills/overleaf-leaflink-sync/scripts/leaflink_overleaf_sync.py" sync \
+  --package-repo "$PWD" \
+  --sync-dir "$PWD/output/overleaf_leaflink" \
+  --dry-run
+```
+
+If the dry run is correct, remove `--dry-run`.
+
 ## Repository Layout
 
 ```text
